@@ -1,5 +1,7 @@
 /* ─── Reset & Base ─── */
 .page {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   background: #08070d;
   color: #f3eeff;

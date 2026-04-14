@@ -101,7 +101,7 @@
     transparent 55%
   );
   transform: translate(-50%, -50%);
-  transition: left 0.1s ease-out, top 0.1s ease-out;
+  /* без transition на left/top — иначе прожектор визуально отстаёт от курсора */
   mix-blend-mode: screen;
 }
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { NAV_ITEMS } from "../data/constants";
 import useActiveSection from "../hooks/useActiveSection";
 
@@ -21,11 +22,25 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  return (
-    <header className={`topbar ${menuOpen ? "menu-open" : ""}`}>
-      {/* Снаружи topbar-inner — иначе затемнение оказывается под слоем main */}
-      <div className="nav-backdrop" aria-hidden tabIndex={-1} onClick={closeMenu} />
+  /* Портал внутрь .page: затемнение над main, но ниже .topbar (200) — не в document.body */
+  const pageEl = typeof document !== "undefined" ? document.querySelector(".page") : null;
+  const backdrop =
+    menuOpen &&
+    pageEl &&
+    createPortal(
+      <div
+        className="nav-backdrop-overlay"
+        aria-hidden
+        role="presentation"
+        onClick={closeMenu}
+      />,
+      pageEl
+    );
 
+  return (
+    <>
+      {backdrop}
+      <header className={`topbar ${menuOpen ? "menu-open" : ""}`}>
       <div className="topbar-inner container">
         <a className="brand" href="#home" onClick={closeMenu}>
           <span className="brand-mark">SS</span>
@@ -70,5 +85,6 @@ export default function Header() {
         </a>
       </div>
     </header>
+    </>
   );
 }

@@ -155,8 +155,16 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.nav-backdrop {
-  display: none;
+/* Затемнение — портал в конец .page; z-index ниже шапки (200), выше main */
+.nav-backdrop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .nav-mobile-phone {
@@ -192,26 +200,6 @@
 
   .topbar-phone {
     display: none;
-  }
-
-  .nav-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 108;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(4px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-
-  .topbar.menu-open .nav-backdrop {
-    opacity: 1;
-    pointer-events: auto;
   }
 
   .nav {

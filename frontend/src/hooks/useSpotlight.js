@@ -1,14 +1,26 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export default function useSpotlight() {
+  const spotlightEl = useRef(null);
+  const secretEl = useRef(null);
+
+  useEffect(() => {
+    spotlightEl.current = document.getElementById("spotlight");
+    secretEl.current = document.querySelector(".secret-code");
+  }, []);
+
   const handleMouseMove = useCallback((e) => {
-    const spotlight = document.getElementById("spotlight");
+    const spotlight = spotlightEl.current;
     if (spotlight) {
-      spotlight.style.left = e.clientX + "px";
-      spotlight.style.top = e.clientY + "px";
+      spotlight.style.left = `${e.clientX}px`;
+      spotlight.style.top = `${e.clientY}px`;
     }
 
-    const secret = document.querySelector(".secret-code");
+    let secret = secretEl.current;
+    if (!secret) {
+      secret = document.querySelector(".secret-code");
+      secretEl.current = secret;
+    }
     if (secret) {
       const rect = secret.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
@@ -16,7 +28,7 @@ export default function useSpotlight() {
       const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
       const radius = 250;
       const opacity = Math.max(0, 1 - dist / radius);
-      secret.style.opacity = opacity;
+      secret.style.opacity = String(opacity);
       if (opacity > 0.85 && !secret.classList.contains("found")) {
         secret.classList.add("found");
       }
@@ -24,7 +36,7 @@ export default function useSpotlight() {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [handleMouseMove]);
 }
