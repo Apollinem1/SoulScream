@@ -1,0 +1,51 @@
+/* ─── Footer ─── */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.5rem 0 3rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #9e95af;
+  font-size: 0.88rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: #c9b8e0;
+}
+
+.footer-slogan {
+  font-style: italic;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  font-size: 0.8rem;
+  color: #6e6580;
+  line-height: 1.6;
+}
+
+.footer-bottom a {
+  color: #9e8cbf;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.footer-bottom a:hover {
+  color: #d49dff;
+}
