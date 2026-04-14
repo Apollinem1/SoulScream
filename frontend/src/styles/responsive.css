@@ -27,22 +27,7 @@
 
 @media (max-width: 680px) {
   .container {
-    width: calc(100% - 2rem);
-  }
-
-  .topbar-inner {
-    flex-wrap: wrap;
-  }
-
-  .nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .topbar-phone {
-    display: none;
+    width: calc(100% - 1.25rem);
   }
 
   .hero h1 {
@@ -78,5 +63,15 @@
   .footer-bottom {
     justify-content: center;
     text-align: center;
+  }
+
+  .contact-links {
+    justify-content: center;
+  }
+
+  .social-pill {
+    flex: 1 1 auto;
+    min-width: min(100%, 11rem);
+    justify-content: center;
   }
 }

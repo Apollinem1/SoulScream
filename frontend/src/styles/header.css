@@ -4,7 +4,8 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
+  padding-top: env(safe-area-inset-top, 0);
   background: rgba(8, 7, 13, 0.7);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -56,6 +57,11 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
+/* Десктоп: обёртка не ломает flex + pill */
+.nav-links {
+  display: contents;
+}
+
 .nav-pill {
   position: absolute;
   top: 0.3rem;
@@ -96,4 +102,196 @@
   font-weight: 600;
   font-size: 0.92rem;
   flex-shrink: 0;
+}
+
+/* Гамбургер — только мобилка (показ в media) */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 130;
+  transition: background 0.2s;
+}
+
+.nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1.15rem;
+}
+
+.nav-toggle-lines span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.2s;
+}
+
+.topbar.menu-open .nav-toggle-lines span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.topbar.menu-open .nav-toggle-lines span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.topbar.menu-open .nav-toggle-lines span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+.nav-mobile-phone {
+  display: none;
+}
+
+/* ─── Мобильное меню (drawer) ─── */
+@media (max-width: 900px) {
+  .topbar-inner {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    position: relative;
+    z-index: 120;
+  }
+
+  .brand-text {
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+
+  .brand-mark {
+    width: 1.95rem;
+    height: 1.95rem;
+    font-size: 0.68rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .topbar-phone {
+    display: none;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 108;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .topbar.menu-open .nav-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(20rem, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    border-radius: 0;
+    background: rgba(10, 8, 16, 0.98);
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 110;
+    overflow: hidden;
+  }
+
+  .topbar.menu-open .nav {
+    transform: translateX(0);
+  }
+
+  .nav-pill {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.15rem;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1.25rem;
+  }
+
+  .nav-links a {
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .nav-links a.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .nav-mobile-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: auto;
+    padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    font-size: 1rem;
+    color: #e8d4ff;
+    text-decoration: none;
+  }
+
+  .nav-mobile-phone:active {
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-text {
+    max-width: 9.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
