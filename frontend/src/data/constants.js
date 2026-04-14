@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/assetUrl.js";
+
 export const NAV_ITEMS = [
   { label: "О школе", href: "#about" },
   { label: "Программа", href: "#program" },
@@ -46,12 +48,12 @@ export const PROCESS_STEPS = [
 ];
 
 export const GALLERY_PHOTOS = [
-  { src: "/photos/girls-stage.png", alt: "Выступление вокалисток на сцене SoulScream" },
-  { src: "/photos/perform-bw.png", alt: "Вокалист с микрофоном на концерте SoulScream" },
-  { src: "/photos/stage-lights.png", alt: "Сцена в лучах софитов" },
-  { src: "/photos/drums.png", alt: "Барабанщик SoulScream" },
-  { src: "/photos/duo.png", alt: "Два вокалиста на сцене" },
-  { src: "/photos/vocal-red.png", alt: "Вокалист в красном свете" }
+  { src: assetUrl("/photos/girls-stage.png"), alt: "Выступление вокалисток на сцене SoulScream" },
+  { src: assetUrl("/photos/perform-bw.png"), alt: "Вокалист с микрофоном на концерте SoulScream" },
+  { src: assetUrl("/photos/stage-lights.png"), alt: "Сцена в лучах софитов" },
+  { src: assetUrl("/photos/drums.png"), alt: "Барабанщик SoulScream" },
+  { src: assetUrl("/photos/duo.png"), alt: "Два вокалиста на сцене" },
+  { src: assetUrl("/photos/vocal-red.png"), alt: "Вокалист в красном свете" }
 ];
 
 export const INITIAL_FORM = {

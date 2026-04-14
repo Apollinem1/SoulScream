@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/assetUrl";
+
 export default function Contacts() {
   return (
     <section id="contacts" className="section section-dark">
@@ -17,7 +19,7 @@ export default function Contacts() {
             Вконтакте
           </a>
           <a href="https://rutube.ru/channel/70723622/" className="social-pill" target="_blank" rel="noreferrer">
-            <img src="/photos/rutube-logo.png" alt="" width="18" height="18" className="social-pill-img" />
+            <img src={assetUrl("/photos/rutube-logo.png")} alt="" width="18" height="18" className="social-pill-img" />
             RuTube
           </a>
           <a href="https://www.instagram.com/pro.ivana/" className="social-pill" target="_blank" rel="noreferrer">

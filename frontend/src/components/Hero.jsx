@@ -1,8 +1,10 @@
+import { assetUrl } from "../utils/assetUrl";
+
 export default function Hero() {
   return (
     <section id="home" className="hero">
       <div className="hero-bg">
-        <img src="/photos/group.png" alt="SoulScream — групповое фото" />
+        <img src={assetUrl("/photos/group.png")} alt="SoulScream — групповое фото" />
       </div>
       <div className="hero-overlay" />
       <div className="hero-content container">

@@ -1,9 +1,11 @@
+import { assetUrl } from "../utils/assetUrl";
+
 export default function About() {
   return (
     <section id="about" className="section">
       <div className="container about-grid reveal">
         <div className="about-photo">
-          <img src="/photos/vocal-red.png" alt="Вокалист SoulScream" />
+          <img src={assetUrl("/photos/vocal-red.png")} alt="Вокалист SoulScream" />
         </div>
         <div className="about-text">
           <p className="tag">О школе</p>

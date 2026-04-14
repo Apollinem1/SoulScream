@@ -1,9 +1,11 @@
+import { assetUrl } from "../utils/assetUrl";
+
 export default function Extra() {
   return (
     <section className="section section-dark">
       <div className="container extra-split reveal">
         <div className="extra-photo">
-          <img src="/photos/stage-lights.png" alt="Сцена SoulScream" />
+          <img src={assetUrl("/photos/stage-lights.png")} alt="Сцена SoulScream" />
         </div>
         <div className="extra-text">
           <p className="tag">Дополнительно</p>
